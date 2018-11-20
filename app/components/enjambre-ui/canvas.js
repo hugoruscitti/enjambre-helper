@@ -1,3 +1,4 @@
+/* global dagreD3, d3 */
 import Component from "@ember/component";
 
 const colores_de_relaciones = [
