@@ -14,7 +14,6 @@ export default Component.extend({
   },
 
   dibujar() {
-    /*global dagreD3 d3 */
     var g = new dagreD3.graphlib.Graph().setGraph({});
 
     // Dibuja cada una de las cajas de modelos.
