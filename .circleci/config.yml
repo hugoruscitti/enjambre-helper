@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.4-stretch-browsers
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test
+workflows:
+  version: 2
+  compilar-y-subir:
+    jobs:
+      - build
