@@ -10,10 +10,8 @@ export default Service.extend({
   interpretar_modelos_desde_archivos(lista_de_archivos) {
     let modelos = [];
 
-    console.group("for archivos");
     for (let i = 0; i < lista_de_archivos.length; i++) {
       let archivo = lista_de_archivos[i];
-      console.log({ i, archivo });
 
       let lineas_del_archivo = archivo.contenido.split("\n");
 
@@ -28,17 +26,13 @@ export default Service.extend({
         relaciones: []
       };
 
-      console.group("por cada linea");
-
       for (let j = 0; j < lineas_del_archivo.length; j++) {
         let linea = lineas_del_archivo[j];
-        console.log({ i, j, definiendo_clase, linea, modelo_actual });
 
         if (expresion_clase.exec(linea)) {
           definiendo_clase = true;
           let clase = expresion_clase.exec(linea)[1];
           modelo_actual.etiqueta = clase;
-          console.log({ clase });
         }
 
         if (definiendo_clase) {
@@ -89,24 +83,8 @@ export default Service.extend({
           relaciones: []
         };
       }
-
-      console.groupEnd("por cada linea");
     }
-    console.groupEnd("for archivos");
-
-    console.log({ modelos });
 
     return modelos;
-
-    /*
-    return lista_de_archivos.map(archivo => {
-      debugger;
-      return {
-        etiqueta: "Perfil",
-        atributos: ["nombre", "apellido"],
-        relaciones: []
-      };
-    });
-    */
   }
 });
