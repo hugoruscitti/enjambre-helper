@@ -4,6 +4,25 @@ import { inject as service } from "@ember/service";
 export default Route.extend({
   modelos: service(),
   model() {
+    if (window.in_carlo) {
+      return window
+        .obtener_archivos_model()
+        .then(data => {
+          data = data.filter(e => e.contenido.length > 10);
+          return {
+            datos: this.modelos.interpretar_modelos_desde_archivos(data),
+            clases: ["Pais"]
+          };
+        })
+        .catch(e => {
+          alert(e);
+        });
+    } else {
+      return this.model_fixture();
+    }
+  },
+
+  model_fixture() {
     let datos_de_entrada = [
       {
         archivo: "perfil.py",
@@ -55,6 +74,9 @@ export default Route.extend({
       }
     ];
 
-    return this.modelos.interpretar_modelos_desde_archivos(datos_de_entrada);
+    return {
+      datos: this.modelos.interpretar_modelos_desde_archivos(datos_de_entrada),
+      clases: ["Evento"]
+    };
   }
 });

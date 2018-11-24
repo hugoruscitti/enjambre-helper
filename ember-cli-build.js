@@ -8,6 +8,7 @@ module.exports = function(defaults) {
   app.import("vendor/dagre-d3.js");
   app.import("vendor/d3.v4.min.js");
   app.import("vendor/dragscroll.js");
+  app.import("vendor/tachyons.min.css");
 
   return app.toTree();
 };

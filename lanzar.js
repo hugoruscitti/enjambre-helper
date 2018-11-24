@@ -1,19 +1,39 @@
 const carlo = require("carlo");
 const path = require("path");
+const fs = require("fs");
+const ruta = "../spider-backend/spider/models/";
 
 (async () => {
-  // Launch the browser.
-  const app = await carlo.launch();
+  const app = await carlo.launch({ width: 900, height: 600 });
 
-  // Terminate Node.js process on app window closing.
   app.on("exit", () => process.exit());
 
-  // Tell carlo where your web files are located.
   app.serveFolder(path.join(__dirname, "dist"));
 
   // Expose 'env' function in the web environment.
-  await app.exposeFunction("env", _ => process.env);
+  await app.exposeFunction("carlo", _ => process.env);
+  await app.exposeFunction("in_carlo", () => {
+    return true;
+  });
 
-  // Navigate to the main page of your app.
+  await app.exposeFunction("obtener_archivos_model", () => {
+    let archivos = fs.readdirSync("../spider-backend/spider/models/");
+    archivos = archivos.filter(archivo => archivo.endsWith(".py"));
+
+    let archivos_con_ruta = archivos.map(archivo => {
+      return path.join(ruta, archivo);
+    });
+
+    let archivos_con_contenido = archivos_con_ruta.map(archivo => {
+      return {
+        archivo: path.basename(archivo),
+        ruta: archivo,
+        contenido: fs.readFileSync(archivo, "utf8")
+      };
+    });
+
+    return archivos_con_contenido;
+  });
+
   await app.load("index.html");
 })();

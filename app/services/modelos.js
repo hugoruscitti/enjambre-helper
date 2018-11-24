@@ -1,9 +1,9 @@
 import Service from "@ember/service";
 
 const expresion_clase = /class (\w+)\(/;
-const expresion_relacion_uno_a_uno = /\s*(\w+).*OneToOneField\((\w+)/;
-const expresion_relacion_uno_a_muchos = /\s*(\w+).*ForeignKey\((\w+)/;
-const expresion_relacion_muchos_a_muchos = /\s*(\w+).*ManyToMany\((\w+)/;
+const expresion_relacion_uno_a_uno = /\s*(\w+).*OneToOneField\('?"?(\w+)'?"?/;
+const expresion_relacion_uno_a_muchos = /\s*(\w+).*ForeignKey\('?"?(\w+)'?"?/;
+const expresion_relacion_muchos_a_muchos = /\s*(\w+).*ManyToMany\('?"?(\w+)'?"?/;
 const expresion_atributo = /\s*(\w+).*Field/;
 
 export default Service.extend({
@@ -74,9 +74,12 @@ export default Service.extend({
         }
       }
 
+      // si leyó todas las lines del archivo y encontró que definió una clase, se
+      // procesa y carga.
       if (definiendo_clase) {
         definiendo_clase = false;
         modelos.pushObject(modelo_actual);
+        console.log(modelo_actual);
         modelo_actual = {
           etiqueta: "",
           atributos: [],
