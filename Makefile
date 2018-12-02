@@ -13,11 +13,11 @@ comandos:
 	@echo ""
 	@echo "  ${Y}Generales de la aplicación${N}"
 	@echo ""
-	@echo "    ${G}iniciar${N}               Instala todas las dependencias."
-	@echo "    ${G}ejecutar${N}              Ejecuta la aplicación de forma local."
-	@echo "    ${G}test${N}                  Ejecuta los tests."
-	@echo "    ${G}version${N}               Incrementa la versión y ejecuta el deploy en circle.ci."
-	@echo "    ${G}lanzar${N}                Ejecuta la aplicación de forma nativa."
+	@echo "    ${G}iniciar${N}           Instala todas las dependencias."
+	@echo "    ${G}ejecutar${N}          Ejecuta la aplicación de forma local."
+	@echo "    ${G}test${N}              Ejecuta los tests."
+	@echo "    ${G}version${N}           Incrementa la versión y ejecuta el deploy en circle.ci"
+	@echo "    ${G}lanzar${N}            Ejecuta la aplicación de forma nativa."
 	@echo ""
 
 
