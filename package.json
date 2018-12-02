@@ -1,11 +1,11 @@
 {
   "name": "enjambre-helper",
   "version": "0.0.0",
-  "private": true,
-  "description": "Small description for enjambre-helper goes here",
-  "repository": "",
+  "private": false,
+  "description": "Un asistente para realizar algunas operaciones típicas en el desarrollo de backends con django",
+  "repository": "https://github.com/hugoruscitti/enjambre-helper",
   "license": "MIT",
-  "author": "",
+  "author": "Hugo Ruscitti",
   "directories": {
     "doc": "doc",
     "test": "tests"
